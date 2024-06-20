@@ -248,9 +248,15 @@
                                             <span class="payment-desc">
                                               <div class="panel-body">
                                                 
-                                                <div class="form-group">
+                                                {{-- <input type="hidden"value="{{ Cart::instance('cart')->total() }}"
+                                                name="total">
+                                                <input type="hidden" name="qty" value="{{ $qty }}"
+                                                placeholder=""> --}}
+
+                                                {{-- OLD VALUE --}}
+                                                {{-- <div class="form-group">
                                                     <label for="cnumber" class="fw-bold">Card Number *</label>
-                                                    <input type="text" name="cnumber" placeholder="Card Number" value="{{ old('cnumber') }}">
+                                                    <input type="hidden" name="cnumber" placeholder="Card Number" value="{{ old('cnumber') }}">
                                                     @error('cnumber')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -270,7 +276,7 @@
                                                     @error('ccvc')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
-                                                </div>
+                                                </div> --}}
                                           
                                               </div>
                                             </span>

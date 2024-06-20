@@ -8,6 +8,7 @@ use App\Models\carddetails;
 use Cart;
 use Illuminate\Support\Facades\Validator;
 
+
 class CompletecheckoutController extends Controller
 {
    public function index(Request $request)
@@ -15,23 +16,49 @@ class CompletecheckoutController extends Controller
       $model = new completecheckout;
       $payment_mode = $request->input('payment_option');
       if ($payment_mode == 'card') {
-         $validator = Validator::make($request->all(), [
-            'cnumber' => 'required',
-            'cexpire' => 'required',
-            'ccvc' => 'required',
-         ]);
+         // $validator = Validator::make($request->all(), [
+         //    'cnumber' => 'required',
+         //    'cexpire' => 'required',
+         //    'ccvc' => 'required',
+         // ]);
 
-         if ($validator->fails()) {
-            $error_message = "error";
-            return redirect()->back()->withErrors($validator)->withInput()->with('error_message', $error_message);
-         } else {
-            $card = new carddetails();
-            $card->user_id = $request->input('user_id');
-            $card->card_number = $request->input('cnumber');
-            $card->card_exp = $request->input('cexpire');
-            $card->card_cvc = $request->input('ccvc');
-            $card->save();
-         }
+         // if ($validator->fails()) {
+         //    $error_message = "error";
+         //    return redirect()->back()->withErrors($validator)->withInput()->with('error_message', $error_message);
+         // } else {
+            // $card = new carddetails();
+            // $card->user_id = $request->input('user_id');
+            // $card->card_number = $request->input('cnumber');
+            // $card->card_exp = $request->input('cexpire');
+            // $card->card_cvc = $request->input('ccvc');
+            // $card->save();
+
+           \Stripe\Stripe::setApiKey(config(key: 'stripe.sk'));
+           
+           $qty = $request->input('qty');
+        $name = $request->input('products');
+        $amount = $request->input('total');
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'aud',
+                        'product_data' => [
+                            'name' => $name,
+                        ],
+                        'unit_amount' => $amount * 100,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('home.index'),
+           
+        ]);
+        return redirect()->away($session->url)->with('success', 'Purchases Successful');
+
+         
       }
       // Assign form data to model properties
       $model->fname = $request->input('fname');
