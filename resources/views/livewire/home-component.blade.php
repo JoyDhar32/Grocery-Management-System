@@ -9,7 +9,7 @@
                         <div class="row align-items-center slider-animated-1">
                             <div class="col-lg-5 col-md-6">
                                 <div class="hero-slider-content-2">
-                                    <h4 class="animated">Irresistible trade-in proposition</h4>
+                                    <h4 class="animated"> trade-in proposition</h4>
                                     <h2 class="animated fw-900">Unbeatable Value</h2>
                                     <h1 class="animated fw-900 text-brand" style="color:#16542E !important;">On Frozen Foods</h1>
                                     <p class="animated" style="color:black !important;font-weight:bold">Embrace the frozen magic! Discover convenience and flavor with our exceptional selection of frozen foods</p>
