@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
-        $this->call(orderinfo::class);
+        // $this->call(orderinfo::class);
         $this->call(subscriptionseeder::class);
         $this->call(contactseeder::class);
-        
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
